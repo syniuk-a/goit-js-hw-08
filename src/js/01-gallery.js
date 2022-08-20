@@ -5,16 +5,18 @@ import { galleryItems } from './gallery-items';
 console.log(galleryItems);
 
 // описання в документації
-import simpleLightbox from 'simplelightbox';
+import SimpleLightbox from "simplelightbox";
 // додатковий імпорт стилів
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-const gallaryContainer = document.querySelector('.gallary');
+// знаходимо галерею
+const galleryList = document.querySelector('.gallery');
 // викликаємо функцію створення
 const gallaryItemMarkup = createGallaryItemMurkup(galleryItems);
+
 //створюємо функцію з макетом розмітки галереї
 function createGallaryItemMurkup(galleryImages) {
-  return galleryImages.map(({ original, preview, description }) => {
+  return galleryImages.map(({ original, preview, description }) => {    
     return `<div class="gallery__item">
         <a href="${original}" class="gallery__link">
           <img src="${preview}" alt="${description}" class="gallery__image">
@@ -22,10 +24,10 @@ function createGallaryItemMurkup(galleryImages) {
           </div>`}).join('');
 };
 // додаємо властивості
-const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery', {
   captionDelay: 200,
   captionsData: 'alt',
 });
 
 // додаємо на сторінку
-gallaryContainer.insertAdjacentHTML('beforeend', gallaryItemMarkup);
+galleryList.insertAdjacentHTML('beforeend', gallaryItemMarkup);
