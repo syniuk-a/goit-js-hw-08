@@ -34,11 +34,11 @@ function onFormSubmit(e) {
   // встановлює поведінку за замовчуванням
   e.preventDefault();  
   //todo виводимо повідомлення якщо поля не заповнені
-  // const inputEl = refr.input.value;
-  // const textareaEl = refr.textarea.value;
-  // if (inputEl === '' || textareaEl === '') {
-  //   return alert('Заповніть усі поля 🤬')
-  // }
+  const inputEl = refr.input.value;
+  const textareaEl = refr.textarea.value;
+  if (inputEl === '' || textareaEl === '') {
+    return alert('Заповніть усі поля 🤬')
+  }
   // чистимо текстові поля input
   e.currentTarget.reset();
   // ...та сховище
