@@ -26,5 +26,6 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 200,
   captionsData: 'alt',
 });
+
 // додаємо на сторінку
 gallaryContainer.insertAdjacentHTML('beforeend', gallaryItemMarkup);
