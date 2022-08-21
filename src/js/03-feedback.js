@@ -8,9 +8,7 @@ const refr = {
   form: document.querySelector('.feedback-form'),
   input: document.querySelector('.feedback-form input'),
   textarea: document.querySelector('.feedback-form textarea'),
-}
-// перемінна для сховища
-// let formData = {};
+};
 
 // вішаємо слухачі подій
 refr.form.addEventListener('input', throttle(onTextInput, 500));
@@ -27,7 +25,9 @@ function onTextInput(e) {
   }
   // зберігаємо знаення в сховище
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-}
+
+  console.log('formData => ', formData);
+};
 
 // функція реагування натискання на кнопку
 function onFormSubmit(e) {
@@ -52,5 +52,5 @@ function populateText() {
   if (savedMessage) {
     refr.input.value = persisterdForm.email
     refr.textarea.value = persisterdForm.message
-  }
+  };
 }

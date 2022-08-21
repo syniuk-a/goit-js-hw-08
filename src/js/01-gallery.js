@@ -11,23 +11,24 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 // знаходимо галерею
 const galleryList = document.querySelector('.gallery');
-// викликаємо функцію створення
-const gallaryItemMarkup = createGallaryItemMurkup(galleryItems);
+// викликаємо 
+const createGallaryItemMurkup = galleryItems
+  .map(({ original, preview, description }) => `
+  <div class="gallery__item">
+  <a href="${original}" class="gallery__link">
+  <img src="${preview}" alt="${description}" class="gallery__image">
+  </a>
+  </div>`,
+)
+.join('');
 
-//створюємо функцію з макетом розмітки галереї
-function createGallaryItemMurkup(galleryItems) {
-  return galleryItems.map(({ original, preview, description }) => {    
-    return `<div class="gallery__item">
-        <a href="${original}" class="gallery__link">
-          <img src="${preview}" alt="${description}" class="gallery__image">
-          </a>
-          </div>`}).join('');
-};
+// додаємо на сторінку
+galleryList.innerHTML = createGallaryItemMurkup;
+
 // додаємо властивості
-const lightbox = new SimpleLightbox('.gallery', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 200,
   captionsData: 'alt',
 });
 
-// додаємо на сторінку
-galleryList.insertAdjacentHTML('beforeend', gallaryItemMarkup);
+document.addEventListener('click', lightbox);
